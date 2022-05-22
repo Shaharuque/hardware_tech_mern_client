@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
+import { signOut } from "firebase/auth";
 
 const Navbar = ({ setTheme, theme }) => {
+  const navigate = useNavigate();
+  const logout = () => {
+    signOut(auth);
+    navigate("/");
+  };
+  const [user, loading, error] = useAuthState(auth);
   const themeChange = () => {
     setTheme(!theme);
   };
@@ -10,10 +19,11 @@ const Navbar = ({ setTheme, theme }) => {
       <li>
         <Link to="/">Home</Link>
       </li>
-
-      <li>
-        <Link to="/dashboard">DashBoard</Link>
-      </li>
+      {user && (
+        <li>
+          <Link to="/dashboard">DashBoard</Link>
+        </li>
+      )}
       <li>
         <Link to="/blog">Blog</Link>
       </li>
@@ -23,6 +33,16 @@ const Navbar = ({ setTheme, theme }) => {
       <li>
         <Link to="/portfolio">Portfolio</Link>
       </li>
+      <li>
+        {user ? (
+          <button className="font-bold" onClick={logout}>
+            SignOut
+          </button>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
+      </li>
+
       <li>
         <label class="swap swap-rotate h-[100%] ">
           <input type="checkbox" onClick={() => themeChange()} />
@@ -47,9 +67,11 @@ const Navbar = ({ setTheme, theme }) => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 container mx-auto  ">
+    <div className="navbar bg-base-100 container mx-auto max-w-screen-xl">
       <div className="navbar-start">
-        <a className="btn btn-ghost normal-case text-2xl font-bold">SEA Tech</a>
+        <a className="btn btn-ghost normal-case text-2xl font-bold font-serif">
+          SEA Tech
+        </a>
       </div>
       <div className="navbar-end font-bold">
         <div className="dropdown  dropdown-end md:hidden">
