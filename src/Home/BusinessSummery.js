@@ -1,71 +1,85 @@
 import React from "react";
-import people from "../img/481829.svg";
+import { Wave } from "react-animated-text";
+import people from "../img/1275780-380e81.svg";
+import computer from "../img/computer.svg";
+import like from "../img/like.svg";
+import flag from "../img/flag.svg";
+import bg from "../img/Petroleum-lines-waving-on-transparent-background-PNG.png";
+import { current } from "daisyui/src/colors";
 
 const BusinessSummery = () => {
   return (
-    <div className="min-h-screen max-w-7xl container mx-auto">
-      <h1 className="text-2xl md:text-4xl font-serif text-center text-secondary pt-20">
-        MILLIONS BUSINESS TRUST US
-      </h1>
-      <div className=" shadow shadow-lg py-10 min-h-[300px] my-20 shadow-current  flex md:flex-row flex-col justify-around  ">
-        <div class="stats ">
-          <div class="stat text-center">
-            <div class="stat-title">
-              <img
-                className="mx-auto"
-                src={people}
-                style={{ height: "56px" }}
-                alt=""
-              />
+    <div
+      className="min-h-screen py-20"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
+      <div className=" max-w-7xl container mx-auto">
+        <h1 className="text-2xl md:text-4xl font-serif text-center text-neutral-content pb-20">
+          <Wave text="MILLIONS BUSINESS TRUST US"></Wave>
+        </h1>
+        <div className=" rounded  py-10 min-h-[300px]  shadow-current  flex md:flex-row flex-col justify-around  ">
+          <div class="stats bg-inherit  ">
+            <div class="stat text-center ">
+              <div class="stat-title">
+                <img
+                  className="mx-auto"
+                  src={people}
+                  style={{ height: "56px" }}
+                  alt=""
+                />
+              </div>
+              <div class="stat-value">256k+</div>
+              <div class="stat-desc font-serif font-bold">Customers</div>
             </div>
-            <div class="stat-value">89,400</div>
-            <div class="stat-desc">21% more than last month</div>
+          </div>
+          <div class="stats bg-inherit ">
+            <div class="stat text-center">
+              <div class="stat-title">
+                <img
+                  className="mx-auto "
+                  src={flag}
+                  style={{ height: "56px" }}
+                  alt=""
+                />
+              </div>
+              <div class="stat-value">67</div>
+              <div class="stat-desc font-serif font-bold">Countries</div>
+            </div>
+          </div>
+          <div class="stats bg-inherit">
+            <div class="stat text-center">
+              <div class="stat-title">
+                <img
+                  className="mx-auto"
+                  src={computer}
+                  style={{ height: "56px" }}
+                  alt=""
+                />
+              </div>
+              <div class="stat-value">300+</div>
+              <div class="stat-desc font-serif font-bold">Products</div>
+            </div>
+          </div>
+          <div class="stats bg-inherit ">
+            <div class="stat text-center">
+              <div class="stat-title">
+                <img
+                  className="mx-auto"
+                  src={like}
+                  style={{ height: "56px" }}
+                  alt=""
+                />
+              </div>
+              <div class="stat-value">40M</div>
+              <div class="stat-desc font-serif font-bold">Visits</div>
+            </div>
           </div>
         </div>
-        <div class="stats ">
-          <div class="stat text-center">
-            <div class="stat-title">
-              <img
-                className="mx-auto "
-                src={people}
-                style={{ height: "56px" }}
-                alt=""
-              />
-            </div>
-            <div class="stat-value">89,400</div>
-            <div class="stat-desc">21% more than last month</div>
-          </div>
-        </div>
-        <div class="stats ">
-          <div class="stat text-center">
-            <div class="stat-title">
-              <img
-                className="mx-auto"
-                src={people}
-                style={{ height: "56px" }}
-                alt=""
-              />
-            </div>
-            <div class="stat-value">89,400</div>
-            <div class="stat-desc">21% more than last month</div>
-          </div>
-        </div>
-        <div class="stats ">
-          <div class="stat text-center">
-            <div class="stat-title">
-              <img
-                className="mx-auto"
-                src={people}
-                style={{ height: "56px" }}
-                alt=""
-              />
-            </div>
-            <div class="stat-value">89,400</div>
-            <div class="stat-desc">21% more than last month</div>
-          </div>
-        </div>
-      </div>
-      {/* <div class="stats my-20  min-h-[300px] shadow shadow-xl shadow-current flex flex-col lg:flex-row ">
+        {/* <div class="stats my-20  min-h-[300px] shadow shadow-xl shadow-current flex flex-col lg:flex-row ">
         <div class="stat">
           <div class="stat-figure text-primary">
             <img
@@ -133,6 +147,7 @@ const BusinessSummery = () => {
           <div class="stat-desc text-secondary">31 tasks remaining</div>
         </div>
       </div> */}
+      </div>
     </div>
   );
 };
