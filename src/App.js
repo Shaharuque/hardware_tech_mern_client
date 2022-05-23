@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Home/Home";
+import Purchase from "./Home/Purchase";
 import Login from "./Login/Login";
 import SignUp from "./Login/SignUp";
 import Footer from "./Shared/Footer";
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signUp" element={<SignUp></SignUp>}></Route>
+        <Route path="/purchase/:id" element={<Purchase></Purchase>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

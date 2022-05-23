@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Tool = ({ product }) => {
-  const { name, price, description, availableQuantity, img } = product;
+  const { name, price, description, availableQuantity, img, _id } = product;
+  const navigate = useNavigate();
+  const handlePurchase = () => {
+    navigate(`/purchase/${_id}`);
+  };
   return (
     // <div class="card lg:card-side bg-neutral-focus shadow-xl shadow-current">
     //   <figure>
@@ -35,7 +40,14 @@ const Tool = ({ product }) => {
           {description.slice(0, 200)}...Read More
         </p>
         <div class="card-actions">
-          <button class="btn btn-primary">Purchase</button>
+          <button
+            onClick={() => {
+              handlePurchase(product);
+            }}
+            class="btn btn-primary"
+          >
+            Purchase
+          </button>
         </div>
       </div>
     </div>
