@@ -1,11 +1,8 @@
 import React from "react";
 import { Wave } from "react-animated-text";
-import people from "../img/1275780-380e81.svg";
-import computer from "../img/computer.svg";
-import like from "../img/like.svg";
-import flag from "../img/flag.svg";
+
 import bg from "../img/pngfind.com-pattern-png-550012.png";
-import { current } from "daisyui/src/colors";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUsers,
