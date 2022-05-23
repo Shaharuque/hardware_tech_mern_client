@@ -13,13 +13,13 @@ function App() {
   return (
     <div data-theme={theme ? "pastel" : "luxury"}>
       <Navbar setTheme={setTheme} theme={theme}></Navbar>
-
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signUp" element={<SignUp></SignUp>}></Route>
       </Routes>
       <Footer></Footer>
+      as
     </div>
   );
 }
