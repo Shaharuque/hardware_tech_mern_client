@@ -4,7 +4,7 @@ import people from "../img/1275780-380e81.svg";
 import computer from "../img/computer.svg";
 import like from "../img/like.svg";
 import flag from "../img/flag.svg";
-import bg from "../img/Petroleum-lines-waving-on-transparent-background-PNG.png";
+import bg from "../img/kindpng_104640.png";
 import { current } from "daisyui/src/colors";
 
 const BusinessSummery = () => {
@@ -21,7 +21,7 @@ const BusinessSummery = () => {
         <h1 className="text-2xl md:text-4xl font-serif text-center text-neutral-content pb-20">
           <Wave text="MILLIONS BUSINESS TRUST US"></Wave>
         </h1>
-        <div className=" rounded  py-10 min-h-[300px]  shadow-current  flex md:flex-row flex-col justify-around  ">
+        <div className=" overflow-hidden  py-10 min-h-[300px] bg-neutral-focus rounded-3xl    flex md:flex-row flex-col justify-around  ">
           <div class="stats bg-inherit  ">
             <div class="stat text-center ">
               <div class="stat-title">
