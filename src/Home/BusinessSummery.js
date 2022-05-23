@@ -4,8 +4,15 @@ import people from "../img/1275780-380e81.svg";
 import computer from "../img/computer.svg";
 import like from "../img/like.svg";
 import flag from "../img/flag.svg";
-import bg from "../img/kindpng_104640.png";
+import bg from "../img/pngfind.com-pattern-png-550012.png";
 import { current } from "daisyui/src/colors";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUsers,
+  faFlag,
+  faComputer,
+  faThumbsUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 const BusinessSummery = () => {
   return (
@@ -21,15 +28,20 @@ const BusinessSummery = () => {
         <h1 className="text-2xl md:text-4xl font-serif text-center text-neutral-content pb-20">
           <Wave text="MILLIONS BUSINESS TRUST US"></Wave>
         </h1>
-        <div className=" overflow-hidden  py-10 min-h-[300px] bg-neutral-focus rounded-3xl    flex md:flex-row flex-col justify-around  ">
+        <div className=" overflow-hidden  py-10 min-h-[300px]  rounded-3xl    flex md:flex-row flex-col justify-around  ">
           <div class="stats bg-inherit  ">
             <div class="stat text-center ">
               <div class="stat-title">
-                <img
+                {/* <img
                   className="mx-auto"
                   src={people}
-                  style={{ height: "56px" }}
+                  style={{ height: "60px" }}
                   alt=""
+                /> */}
+                <FontAwesomeIcon
+                  className="text-[purple]"
+                  style={{ height: "60px" }}
+                  icon={faUsers}
                 />
               </div>
               <div class="stat-value">256k+</div>
@@ -39,11 +51,10 @@ const BusinessSummery = () => {
           <div class="stats bg-inherit ">
             <div class="stat text-center">
               <div class="stat-title">
-                <img
-                  className="mx-auto "
-                  src={flag}
-                  style={{ height: "56px" }}
-                  alt=""
+                <FontAwesomeIcon
+                  className="text-[purple]"
+                  style={{ height: "60px" }}
+                  icon={faFlag}
                 />
               </div>
               <div class="stat-value">67</div>
@@ -53,11 +64,10 @@ const BusinessSummery = () => {
           <div class="stats bg-inherit">
             <div class="stat text-center">
               <div class="stat-title">
-                <img
-                  className="mx-auto"
-                  src={computer}
-                  style={{ height: "56px" }}
-                  alt=""
+                <FontAwesomeIcon
+                  className="text-[purple]"
+                  style={{ height: "60px" }}
+                  icon={faComputer}
                 />
               </div>
               <div class="stat-value">300+</div>
@@ -67,11 +77,10 @@ const BusinessSummery = () => {
           <div class="stats bg-inherit ">
             <div class="stat text-center">
               <div class="stat-title">
-                <img
-                  className="mx-auto"
-                  src={like}
-                  style={{ height: "56px" }}
-                  alt=""
+                <FontAwesomeIcon
+                  className="text-[purple]"
+                  style={{ height: "60px" }}
+                  icon={faThumbsUp}
                 />
               </div>
               <div class="stat-value">40M</div>
@@ -83,7 +92,7 @@ const BusinessSummery = () => {
         <div class="stat">
           <div class="stat-figure text-primary">
             <img
-              style={{ height: "56px", width: "56px" }}
+              style={{ height: "60px", width: "60px" }}
               src={people}
               alt=""
             />
