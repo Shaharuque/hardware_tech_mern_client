@@ -38,7 +38,10 @@ const Navbar = ({ setTheme, theme }) => {
       <li>
         {user ? (
           <div className="flex items-center">
-            <button className="font-bold " onClick={logout}>
+            <button
+              className="font-bold bg-accent btn btn-sm "
+              onClick={logout}
+            >
               SignOut
             </button>
             <p className="text-xs ">{user?.displayName.slice(0, 8)}</p>
