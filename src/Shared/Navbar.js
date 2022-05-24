@@ -21,7 +21,7 @@ const Navbar = ({ setTheme, theme }) => {
       </li>
       {user && (
         <li>
-          <Link to="/dashboard">DashBoard</Link>
+          <Link to="/dashBoard">DashBoard</Link>
         </li>
       )}
       <li>
@@ -69,12 +69,29 @@ const Navbar = ({ setTheme, theme }) => {
   return (
     <div className="navbar bg-base-100 container mx-auto max-w-screen-xl">
       <div className="navbar-start">
+        <label for="my-drawer-2" class=" drawer-button lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
+        </label>
+
         <a className="btn btn-ghost normal-case text-2xl font-bold font-serif">
           SEA Tech
         </a>
       </div>
       <div className="navbar-end font-bold">
-        <div className="dropdown  dropdown-end md:hidden">
+        <div className="dropdown  dropdown-end lg:hidden">
           <label tabIndex="0" className=" btn btn-ghost ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +117,7 @@ const Navbar = ({ setTheme, theme }) => {
         </div>
       </div>
 
-      <div className="navbar-end hidden md:flex font-bold">
+      <div className="navbar-end hidden lg:flex font-bold">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
     </div>
