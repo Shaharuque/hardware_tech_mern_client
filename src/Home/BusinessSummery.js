@@ -153,7 +153,7 @@ const BusinessSummery = () => {
           <div class="stat-desc text-secondary">31 tasks remaining</div>
         </div>
       </div> */}
-        <div class="card lg:card-side bg-primary shadow-xl">
+        <div class="card lg:card-side bg-primary shadow-xl font-bold">
           <div class="card-body">
             <h2 class="card-title md:text-3xl">
               Have You Any Question About Us Or Get A Product Request?

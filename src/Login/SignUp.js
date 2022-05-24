@@ -1,19 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import Loading from "../Shared/Loading";
+import useToken from "../Authentication/useToken";
 
 const SignUp = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [signInWithGoogle, gUser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [token] = useToken(user || gUser);
+  let from = location.state?.from?.pathname || "/";
+  if (token) {
+    navigate(from, { replace: true });
+  }
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
+    await createUserWithEmailAndPassword(data.email, data.password);
+
+    await updateProfile({ displayName: data.name });
+    console.log("Updated");
   };
   if (loading) {
     return <Loading></Loading>;
@@ -57,7 +76,7 @@ const SignUp = () => {
                     message: "Email is required",
                   },
                   pattern: {
-                    value: /[a-z0-9]+@[a-z]+\.[a-z]{3}/,
+                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
                     message: "Provide a Valid Email",
                   },
                 })}

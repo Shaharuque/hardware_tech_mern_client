@@ -11,6 +11,7 @@ const Navbar = ({ setTheme, theme }) => {
     navigate("/");
   };
   const [user, loading, error] = useAuthState(auth);
+  console.log(user);
   const themeChange = () => {
     setTheme(!theme);
   };
@@ -35,9 +36,12 @@ const Navbar = ({ setTheme, theme }) => {
       </li>
       <li>
         {user ? (
-          <button className="font-bold" onClick={logout}>
-            SignOut
-          </button>
+          <div className="flex items-center">
+            <button className="font-bold " onClick={logout}>
+              SignOut
+            </button>
+            <p className="text-xs ">{user?.displayName.slice(0, 8)}</p>
+          </div>
         ) : (
           <Link to="/login">Login</Link>
         )}

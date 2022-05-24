@@ -1,12 +1,25 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import Loading from "../Shared/Loading";
+import useToken from "../Authentication/useToken";
 
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [signInWithGoogle, gUser, gloading, gError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [token] = useToken(user || gUser);
+  let from = location.state?.from?.pathname || "/";
+  if (token) {
+    navigate(from, { replace: true });
+  }
   const {
     register,
     handleSubmit,
@@ -16,7 +29,10 @@ const Login = () => {
   if (loading) {
     return <Loading></Loading>;
   }
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
+  };
+
   return (
     <div className="min-h-screen py-20 flex justify-center items-center ">
       <div className="card w-96 shadow-2xl shadow-current">
