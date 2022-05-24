@@ -153,6 +153,22 @@ const BusinessSummery = () => {
           <div class="stat-desc text-secondary">31 tasks remaining</div>
         </div>
       </div> */}
+        <div class="card lg:card-side bg-primary shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title md:text-3xl">
+              Have You Any Question About Us Or Get A Product Request?
+            </h2>
+            <p className="md:text-xl">Don't Hesitate To Contact Us</p>
+            <div class="card-actions justify-end">
+              <button class=" btn btn-secondary btn-sm md:btn-md">
+                Request For Quote
+              </button>
+              <button class="btn btn-accent btn-sm md:btn-md">
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
