@@ -15,6 +15,7 @@ import Home from "./Home/Home";
 import Purchase from "./Home/Purchase";
 import Login from "./Login/Login";
 import SignUp from "./Login/SignUp";
+import Review from "./Review/Review";
 import Footer from "./Shared/Footer";
 import Navbar from "./Shared/Navbar";
 
@@ -59,6 +60,7 @@ function App() {
           ></Route>
         </Route>
         <Route path="/purchase/:id" element={<Purchase></Purchase>}></Route>
+        <Route path="/reviews" element={<Review></Review>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

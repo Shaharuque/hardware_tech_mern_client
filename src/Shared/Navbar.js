@@ -11,6 +11,7 @@ const Navbar = ({ setTheme, theme }) => {
     navigate("/");
   };
   const [user, loading, error] = useAuthState(auth);
+
   console.log(user);
   const themeChange = () => {
     setTheme(!theme);

@@ -1,19 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Wave } from "react-animated-text";
-import HomeReview from "./HomeReview";
+import HomeReview from "../Home/HomeReview";
 
-const ReviewHome = () => {
+const Review = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const run = async () => {
-      const { data } = await axios.get("http://localhost:5000/homeReview");
+      const { data } = await axios.get("http://localhost:5000/review");
       setReviews(data);
     };
     run();
   }, []);
   console.log(reviews);
-
   return (
     <div className="py-20 px-10 min-h-screen container mx-auto max-w-7xl">
       <h1 className="text-2xl md:text-4xl font-serif text-center text-neutral-content pb-20">
@@ -28,4 +27,4 @@ const ReviewHome = () => {
   );
 };
 
-export default ReviewHome;
+export default Review;

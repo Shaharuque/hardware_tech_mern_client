@@ -1,7 +1,13 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../Authentication/useAdmin";
+import auth from "../firebase.init";
 
 const DashBoard = () => {
+  const [user, loading, error] = useAuthState(auth);
+
+  const [admin] = useAdmin(user);
   return (
     <div className="container max-w-7xl mx-auto">
       <div class="drawer drawer-mobile">
@@ -15,25 +21,33 @@ const DashBoard = () => {
             <li>
               <Link to="/dashBoard">My Profile</Link>
             </li>
-            <li>
-              <Link to="/dashBoard/myOrder">My Order</Link>
-            </li>
-            <li>
-              <Link to="/dashBoard/addReview">Add Review</Link>
-            </li>
+            {!admin && (
+              <>
+                <li>
+                  <Link to="/dashBoard/myOrder">My Order</Link>
+                </li>
+                <li>
+                  <Link to="/dashBoard/addReview">Add Review</Link>
+                </li>
+              </>
+            )}
 
-            <li>
-              <Link to="/dashBoard/manageAllOrder">Manage All Order</Link>
-            </li>
-            <li>
-              <Link to="/dashBoard/addProduct">Add Product</Link>
-            </li>
-            <li>
-              <Link to="/dashBoard/makeUpdate">Make Update</Link>
-            </li>
-            <li>
-              <Link to="/dashBoard/manageProduct">Manage Product</Link>
-            </li>
+            {admin && (
+              <>
+                <li>
+                  <Link to="/dashBoard/manageAllOrder">Manage All Order</Link>
+                </li>
+                <li>
+                  <Link to="/dashBoard/addProduct">Add Product</Link>
+                </li>
+                <li>
+                  <Link to="/dashBoard/makeUpdate">Make Update</Link>
+                </li>
+                <li>
+                  <Link to="/dashBoard/manageProduct">Manage Product</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
