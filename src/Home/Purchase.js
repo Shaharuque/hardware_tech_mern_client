@@ -37,6 +37,7 @@ const Purchase = () => {
     run();
   }, []);
   const handleSubmit = (event) => {
+    document.getElementById("submit").setAttribute("disabled");
     event.preventDefault();
     const order = {
       name: user?.displayName,
@@ -81,7 +82,7 @@ const Purchase = () => {
             </p>
             {/* <button class="btn btn-primary">Buy Now</button> */}
             {/* <!-- The button to open modal --> */}
-            <label for="my-modal" class="btn modal-button bg-primary">
+            <label for="my-modal" class="btn dis modal-button bg-primary">
               Buy Now
             </label>
 
@@ -122,15 +123,18 @@ const Purchase = () => {
                     placeholder="Your Address"
                     name="address"
                     className="input input-bordered w-full max-w-xs"
+                    required
                   />
 
                   <input
+                    required
                     type=""
                     name="phone"
                     placeholder="Phone Number"
                     className="input input-bordered w-full max-w-xs"
                   />
                   <input
+                    required
                     onChange={Amount}
                     type="number"
                     id="amount"
@@ -146,9 +150,10 @@ const Purchase = () => {
                   )}
 
                   <input
+                    id="submit"
                     type="submit"
                     value="Pay"
-                    className=" btn btn-bordered btn-secondary  max-w-xs"
+                    className="btn btn-bordered btn-secondary  max-w-xs"
                   />
                 </form>
               </div>
