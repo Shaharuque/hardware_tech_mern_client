@@ -39,7 +39,11 @@ const Tool = ({ product }) => {
           <span className="font-serif text-warning text-xl">Description: </span>{" "}
           {description.slice(0, 200)}...Read More
         </p>
-        <div class="card-actions">
+        <div class="card-actions items-center">
+          <p className="text-sm border py-1 text-center  rounded">
+            <span className="font-serif">Minimum Order Quantity</span>:{" "}
+            <span className="text-md text-primary">100</span>
+          </p>
           <button
             onClick={() => {
               handlePurchase(product);
