@@ -8,6 +8,7 @@ const Purchase = () => {
   const [user] = useAuthState(auth);
   const params = useParams();
   const _id = params.id;
+  console.log(_id);
   const [product, setProduct] = useState([]);
   const [orderAmount, setOrderAmount] = useState(0);
 
@@ -54,10 +55,10 @@ const Purchase = () => {
     <div className="min-h-screen sm:p-20">
       <div class="card bg-neutral-focus shadow-xl">
         <figure class="px-10 pt-10">
-          <img src={img || "image"} alt="Shoes" class="rounded-xl" />
+          <img src={img} alt="Shoes" class="rounded-xl" />
         </figure>
         <div class="card-body items-center text-center">
-          <h2 class="card-title font-bold ">{product?.name || "Name"}</h2>
+          <h2 class="card-title font-bold ">{product?.name}</h2>
           <p className="font-bold">
             <span className="text-warning text-xl font-serif">Price: </span>${" "}
             {price}
