@@ -16,7 +16,10 @@ const HomeTools = () => {
     console.log(products);
   }, []);
   return (
-    <div className="min-h-screen mx-auto container max-w-7xl py-20">
+    <div
+      id="products"
+      className="min-h-screen mx-auto container max-w-7xl py-20"
+    >
       <h1 className="text-2xl md:text-4xl font-serif text-center text-neutral-content pb-20">
         <Wave text="OUR PRODUCTS"></Wave>
       </h1>

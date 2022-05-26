@@ -20,7 +20,7 @@ const Banner = () => {
             Unbeatable
           </p>
           <button
-            onClick={() => window.location.replace("/#footer")}
+            onClick={() => window.location.replace("/#products")}
             class="btn btn-primary"
           >
             Our Products
