@@ -14,7 +14,7 @@ const ReviewHome = () => {
     };
     run();
   }, []);
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <div className="py-20 px-10 min-h-screen container mx-auto max-w-7xl">

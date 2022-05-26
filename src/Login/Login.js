@@ -16,6 +16,13 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [token] = useToken(user || gUser);
+
+  let errorMessage;
+  if (error || gError) {
+    errorMessage = (
+      <p className="text-red-500">{error?.message || gError?.message}</p>
+    );
+  }
   let from = location.state?.from?.pathname || "/";
   if (token) {
     navigate(from, { replace: true });
@@ -101,6 +108,7 @@ const Login = () => {
                 )}
               </label>
             </div>
+            {errorMessage}
 
             <input
               className="btn btn-outline  w-full max-w-xs"

@@ -8,6 +8,7 @@ const Navbar = ({ setTheme, theme }) => {
   const navigate = useNavigate();
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
     navigate("/");
   };
   const [user, loading, error] = useAuthState(auth);
@@ -44,7 +45,7 @@ const Navbar = ({ setTheme, theme }) => {
             >
               SignOut
             </button>
-            <p className="text-xs ">{user?.displayName.slice(0, 8)}</p>
+            <p className="text-xs ">{user?.displayName?.slice(0, 8) || "as"}</p>
           </div>
         ) : (
           <Link to="/login">Login</Link>

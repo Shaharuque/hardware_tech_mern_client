@@ -2,7 +2,7 @@ import React from "react";
 import { DynamicStar } from "react-dynamic-star";
 
 const HomeReview = ({ singleReview }) => {
-  console.log(singleReview);
+  // console.log(singleReview);
   const { username, review, rating, productname } = singleReview;
   return (
     <div class="card  bg-neutral-focus shadow-xl">

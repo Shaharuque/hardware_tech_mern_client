@@ -14,11 +14,20 @@ const SignUp = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-  const [signInWithGoogle, gUser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gloading, gError] = useSignInWithGoogle(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [token] = useToken(user || gUser);
   let from = location.state?.from?.pathname || "/";
+  // if (token) {
+  //   navigate(from, { replace: true });
+  // }
+  let errorMessage;
+  if (error || gError || updateError) {
+    errorMessage = (
+      <p className="text-red-500">{error?.message || gError?.message}</p>
+    );
+  }
   if (token) {
     navigate(from, { replace: true });
   }
@@ -127,6 +136,7 @@ const SignUp = () => {
                 )}
               </label>
             </div>
+            {errorMessage}
 
             <input
               className="btn btn-outline  w-full max-w-xs"
