@@ -1,16 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import auth from "../firebase.init";
+import Payment from "./Payment";
 
 const Purchase = () => {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const params = useParams();
   const _id = params.id;
   console.log(_id);
   const [product, setProduct] = useState([]);
-  const [orderAmount, setOrderAmount] = useState(0);
+  const [orderAmount, setOrderAmount] = useState(100);
+  const [button, setButton] = useState(null);
 
   const { name, img, description, availableQuantity, price } = product;
   const [error, setError] = useState(null);
@@ -19,10 +22,16 @@ const Purchase = () => {
     const value = document.getElementById("amount").value;
     if (value < 100) {
       setError("Can't Order Less Than 100 PCS");
+      setOrderAmount(100);
+      setButton(null);
     } else if (value > availableQuantity) {
       setError("Can't Order More Than Available PCS");
+      setButton(null);
+      setOrderAmount(100);
     } else {
       setOrderAmount(value);
+      setButton(1);
+
       setError(null);
     }
   };
@@ -37,19 +46,21 @@ const Purchase = () => {
     run();
   }, []);
   const handleSubmit = (event) => {
-    document.getElementById("submit").setAttribute("disabled");
     event.preventDefault();
+
     const order = {
       name: user?.displayName,
       email: user?.email,
       product_id: _id,
       productName: name,
-      oderAmount: orderAmount,
+      orderAmount: orderAmount,
       paymentAmount: orderAmount * price,
       address: event.target.address.value,
       phone: event.target.phone.value,
+      status: "pending",
     };
-    console.log(order);
+    const orderJson = JSON.stringify(order);
+    navigate(`/dashboard/payment/${orderJson}`);
   };
 
   return (
@@ -139,7 +150,7 @@ const Purchase = () => {
                     type="number"
                     id="amount"
                     name="amount"
-                    placeholder="Order Quantity"
+                    placeholder={orderAmount}
                     className="input input-bordered w-full max-w-xs"
                   />
                   {error && <p className="font-bold text-error">{error}</p>}
@@ -148,13 +159,23 @@ const Purchase = () => {
                       Your Need to Pay: $ {price * orderAmount}
                     </p>
                   )}
-
-                  <input
-                    id="submit"
-                    type="submit"
-                    value="Pay"
-                    className="btn btn-bordered btn-secondary  max-w-xs"
-                  />
+                  {!button && (
+                    <input
+                      disabled
+                      id="submit"
+                      type="submit"
+                      value="Pay"
+                      className="btn btn-bordered btn-secondary  max-w-xs"
+                    />
+                  )}
+                  {button && (
+                    <input
+                      id="submit"
+                      type="submit"
+                      value="Pay"
+                      className="btn btn-bordered btn-secondary  max-w-xs"
+                    />
+                  )}
                 </form>
               </div>
             </div>

@@ -2,14 +2,17 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import Loading from "../Shared/Loading";
 import useToken from "../Authentication/useToken";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const location = useLocation();
   const navigate = useNavigate();
   const [signInWithGoogle, gUser, gloading, gError] = useSignInWithGoogle(auth);
@@ -36,6 +39,21 @@ const Login = () => {
   if (loading) {
     return <Loading></Loading>;
   }
+
+  const resetPassword = async (data) => {
+    const email = document.getElementById("email").value;
+    console.log(email);
+    if (email) {
+      await sendPasswordResetEmail(email);
+      if (email) {
+        toast("Sent email");
+      } else {
+        toast.error("Please enter email address");
+      }
+    } else {
+      toast.error("Please Enter Email");
+    }
+  };
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
@@ -61,6 +79,7 @@ const Login = () => {
                     message: "Provide a Valid Email",
                   },
                 })}
+                id="email"
                 type="email"
                 placeholder="Email"
                 className="input input-bordered w-full max-w-xs"
@@ -115,6 +134,15 @@ const Login = () => {
               type="submit"
               value="login"
             />
+            <p className="mt-3 text-center">
+              Forget Password?
+              <span
+                onClick={() => resetPassword()}
+                className="btn btn-link text-decoration-none "
+              >
+                Reset Password
+              </span>
+            </p>
           </form>
           <p className="font-bold">
             Don't Have Account?
@@ -133,6 +161,7 @@ const Login = () => {
             Continue With Google
           </button>
         </div>
+        <ToastContainer></ToastContainer>
       </div>
     </div>
   );

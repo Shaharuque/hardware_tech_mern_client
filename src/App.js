@@ -12,9 +12,11 @@ import ManageProduct from "./DashBoard/ManageProduct";
 import MyOrder from "./DashBoard/MyOrder";
 import MyProfile from "./DashBoard/MyProfile";
 import Home from "./Home/Home";
+import Payment from "./Home/Payment";
 import Purchase from "./Home/Purchase";
 import Login from "./Login/Login";
 import SignUp from "./Login/SignUp";
+import NotFound from "./NotFound/NotFound";
 import Review from "./Review/Review";
 import Footer from "./Shared/Footer";
 import Navbar from "./Shared/Navbar";
@@ -47,6 +49,7 @@ function App() {
         >
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="myOrder" element={<MyOrder></MyOrder>}></Route>
+          <Route path="payment/:json" element={<Payment></Payment>}></Route>
           <Route path="addReview" element={<AddReview></AddReview>}></Route>
           <Route
             path="manageAllOrder"
@@ -61,6 +64,7 @@ function App() {
         </Route>
         <Route path="/purchase/:id" element={<Purchase></Purchase>}></Route>
         <Route path="/reviews" element={<Review></Review>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
