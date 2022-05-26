@@ -41,7 +41,7 @@ const DashBoard = () => {
                   <Link to="/dashBoard/addProduct">Add Product</Link>
                 </li>
                 <li>
-                  <Link to="/dashBoard/makeUpdate">Make Update</Link>
+                  <Link to="/dashBoard/makeUpdate">Make Admin</Link>
                 </li>
                 <li>
                   <Link to="/dashBoard/manageProduct">Manage Product</Link>

@@ -16,7 +16,7 @@ const MyProfile = () => {
       education: event.target.education.value,
     };
     console.log(update);
-    fetch(`http://localhost:5000/user?email=${user.email}`, {
+    fetch(`https://sea-tech.herokuapp.com/user?email=${user.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -43,7 +43,7 @@ const MyProfile = () => {
   const [user] = useAuthState(auth);
 
   const { data, isLoading, refetch } = useQuery("user", () =>
-    fetch(`http://localhost:5000/user?email=${user?.email}`, {
+    fetch(`https://sea-tech.herokuapp.com/user?email=${user?.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

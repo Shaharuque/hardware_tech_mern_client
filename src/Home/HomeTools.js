@@ -7,7 +7,9 @@ const HomeTools = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const run = async () => {
-      const { data } = await axios.get("http://localhost:5000/products");
+      const { data } = await axios.get(
+        "https://sea-tech.herokuapp.com/products"
+      );
       setProducts(data);
     };
     run();

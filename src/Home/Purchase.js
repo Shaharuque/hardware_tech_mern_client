@@ -30,7 +30,7 @@ const Purchase = () => {
   useEffect(() => {
     const run = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/product?id=${_id}`
+        `https://sea-tech.herokuapp.com/product?id=${_id}`
       );
       setProduct(data);
     };

@@ -19,7 +19,7 @@ const AddReview = () => {
       rating: event.target.rating.value,
     };
     console.log(review);
-    fetch("http://localhost:5000/review", {
+    fetch("https://sea-tech.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

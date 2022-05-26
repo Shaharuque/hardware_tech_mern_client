@@ -7,7 +7,7 @@ const Review = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const run = async () => {
-      const { data } = await axios.get("http://localhost:5000/review");
+      const { data } = await axios.get("https://sea-tech.herokuapp.com/review");
       setReviews(data);
     };
     run();
