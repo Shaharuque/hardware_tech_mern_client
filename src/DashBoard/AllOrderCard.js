@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-const AllOrderCard = ({ order }) => {
+const AllOrderCard = ({ order, setBool, bool }) => {
   const {
     productName,
     orderAmount,
@@ -8,8 +9,10 @@ const AllOrderCard = ({ order }) => {
     transactionId,
     paymentAmount,
     product_id,
+    _id,
   } = order;
-  const [availableQuantity, setAvailableQuantity] = useState({});
+  const [availableQuantity, setAvailableQuantity] = useState([]);
+  const [delivered, setDelivered] = useState(1);
 
   useEffect(() => {
     fetch(`http://localhost:5000/available?product_id=${product_id}`, {
@@ -20,8 +23,27 @@ const AllOrderCard = ({ order }) => {
     })
       .then((res) => res.json())
       .then((data) => setAvailableQuantity(data[0].availableQuantity));
-  }, []);
-  console.log(availableQuantity);
+  }, [bool]);
+  //   console.log(availableQuantity);
+
+  const handleDeliver = () => {
+    fetch(
+      `http://localhost:5000/update?product_id=${product_id}&&_id=${_id}&&orderAmount=${orderAmount}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Delivered Successfully");
+        }
+      });
+    setBool(1);
+  };
 
   return (
     <div>
@@ -51,6 +73,20 @@ const AllOrderCard = ({ order }) => {
           <p>
             <span className="text-primary">Status: </span>
             <span className="btn btn-xs btn-warning">{status}</span>
+          </p>
+          <p>
+            {/* <span className="text-primary">Status: </span> */}
+            {status === "pending" && (
+              <button
+                onClick={() => handleDeliver()}
+                className="btn btn-xs btn-error"
+              >
+                Deliver
+              </button>
+            )}
+            {status !== "pending" && (
+              <button className="btn btn-xs btn-success ">Shipped</button>
+            )}
           </p>
           <p></p>
           <p></p>

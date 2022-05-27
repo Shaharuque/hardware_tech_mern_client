@@ -3,10 +3,10 @@ import { Wave } from "react-animated-text";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import AllOrderCard from "./AllOrderCard";
-import MyOrderCard from "./MyOrderCard";
 
 const ManageAllProduct = () => {
   const [allOrder, setAllOrder] = useState([]);
+  const [bool, setBool] = useState(true);
   const [user] = useAuthState(auth);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const ManageAllProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => setAllOrder(data));
-  }, []);
+  }, [bool]);
   console.log(allOrder);
   return (
     <div
@@ -31,7 +31,11 @@ const ManageAllProduct = () => {
 
       <div className=" px-5">
         {allOrder?.map((order, index) => (
-          <AllOrderCard order={order}></AllOrderCard>
+          <AllOrderCard
+            setBool={setBool}
+            key={index}
+            order={order}
+          ></AllOrderCard>
         ))}
       </div>
     </div>

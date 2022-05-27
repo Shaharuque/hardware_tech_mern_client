@@ -40,7 +40,12 @@ const MyOrderCard = ({ order }) => {
           </p>
           <p>
             <span className="text-primary">Status: </span>
-            <span className="btn btn-xs btn-warning">{status}</span>
+            {status !== "delivered" && (
+              <span className="btn btn-xs btn-warning">{status}</span>
+            )}
+            {status === "delivered" && (
+              <span className="btn btn-xs btn-success">{status}</span>
+            )}
           </p>
           <p></p>
           <p></p>
