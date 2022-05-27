@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import RequireAuth from "./Authentication/RequireAuth";
 import Blog from "./Blog/Blog";
@@ -66,6 +67,7 @@ function App() {
         <Route path="/reviews" element={<Review></Review>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
       <Footer></Footer>
     </div>
   );

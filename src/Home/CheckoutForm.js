@@ -6,11 +6,21 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { async } from "@firebase/util";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import useAdmin from "../Authentication/useAdmin";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 
 const CheckoutForm = ({ order }) => {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
+  const navigate = useNavigate();
   console.log(order);
+
   const { paymentAmount, name, email } = order;
   console.log(paymentAmount);
+  console.log(order);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -77,8 +87,27 @@ const CheckoutForm = ({ order }) => {
     } else {
       setCardError("");
       console.log(paymentIntent);
-      setTransactionId(paymentIntent.id);
-      setSuccess("Your Payment Completed");
+      order.transactionId = paymentIntent.id;
+      fetch("http://localhost:5000/order", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(order),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            toast.success("Your Payment Completed!!");
+            toast.success(`Transaction Id: ${paymentIntent.id}`);
+            if (admin) {
+              navigate("/dashBoard/manageAllOrder");
+            } else {
+              navigate("/dashBoard/myOrder");
+            }
+          }
+        });
     }
   };
 
@@ -119,6 +148,7 @@ const CheckoutForm = ({ order }) => {
           </p>
         </div>
       )}
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
