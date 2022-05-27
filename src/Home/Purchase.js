@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import auth from "../firebase.init";
+import Loading from "../Shared/Loading";
 import Payment from "./Payment";
 
 const Purchase = () => {
@@ -39,12 +40,18 @@ const Purchase = () => {
   useEffect(() => {
     const run = async () => {
       const { data } = await axios.get(
-        `https://sea-tech.herokuapp.com/product?id=${_id}`
+        `https://sea-tech.herokuapp.com/product?id=${_id}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       setProduct(data);
     };
     run();
   }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
