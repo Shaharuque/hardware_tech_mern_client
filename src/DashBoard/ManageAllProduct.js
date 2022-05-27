@@ -8,9 +8,11 @@ const ManageAllProduct = () => {
   const [allOrder, setAllOrder] = useState([]);
   const [bool, setBool] = useState(true);
   const [user] = useAuthState(auth);
+  console.log(bool);
+  const [availableQuantity, setAvailableQuantity] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allOrder`, {
+    fetch(`https://sea-tech.herokuapp.comallOrder`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -32,6 +34,9 @@ const ManageAllProduct = () => {
       <div className=" px-5">
         {allOrder?.map((order, index) => (
           <AllOrderCard
+            availableQuantity={availableQuantity}
+            setAvailableQuantity={setAvailableQuantity}
+            bool={bool}
             setBool={setBool}
             key={index}
             order={order}

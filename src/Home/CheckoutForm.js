@@ -30,7 +30,7 @@ const CheckoutForm = ({ order }) => {
   const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://sea-tech.herokuapp.comcreate-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -88,8 +88,8 @@ const CheckoutForm = ({ order }) => {
       setCardError("");
       console.log(paymentIntent);
       order.transactionId = paymentIntent.id;
-      fetch("http://localhost:5000/order", {
-        method: "POST",
+      fetch("https://sea-tech.herokuapp.comorderUpdate", {
+        method: "PUT",
         headers: {
           "content-type": "application/json",
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

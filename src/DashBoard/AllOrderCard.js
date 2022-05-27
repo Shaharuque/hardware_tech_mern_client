@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const AllOrderCard = ({ order, setBool, bool }) => {
+const AllOrderCard = ({
+  order,
+  setBool,
+  bool,
+  availableQuantity,
+  setAvailableQuantity,
+}) => {
   const {
     productName,
     orderAmount,
@@ -11,11 +17,10 @@ const AllOrderCard = ({ order, setBool, bool }) => {
     product_id,
     _id,
   } = order;
-  const [availableQuantity, setAvailableQuantity] = useState([]);
-  const [delivered, setDelivered] = useState(1);
+  //   const [availableQuantity, setAvailableQuantity] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/available?product_id=${product_id}`, {
+    fetch(`https://sea-tech.herokuapp.comavailable?product_id=${product_id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -28,7 +33,7 @@ const AllOrderCard = ({ order, setBool, bool }) => {
 
   const handleDeliver = () => {
     fetch(
-      `http://localhost:5000/update?product_id=${product_id}&&_id=${_id}&&orderAmount=${orderAmount}`,
+      `https://sea-tech.herokuapp.comupdate?product_id=${product_id}&&_id=${_id}&&orderAmount=${orderAmount}`,
       {
         method: "PUT",
         headers: {
@@ -40,9 +45,10 @@ const AllOrderCard = ({ order, setBool, bool }) => {
       .then((data) => {
         if (data.success) {
           toast.success("Delivered Successfully");
+
+          setBool(!bool);
         }
       });
-    setBool(1);
   };
 
   return (
@@ -66,10 +72,12 @@ const AllOrderCard = ({ order, setBool, bool }) => {
             {paymentAmount}
           </p>
 
-          <p>
-            <span className="text-primary">Transaction ID: </span>{" "}
-            {transactionId}
-          </p>
+          {transactionId && (
+            <p>
+              <span className="text-primary">Transaction ID: </span>{" "}
+              {transactionId}
+            </p>
+          )}
           <p>
             <span className="text-primary">Status: </span>
             <span className="btn btn-xs btn-warning">{status}</span>
@@ -84,8 +92,10 @@ const AllOrderCard = ({ order, setBool, bool }) => {
                 Deliver
               </button>
             )}
-            {status !== "pending" && (
+            {status === "delivered" ? (
               <button className="btn btn-xs btn-success ">Shipped</button>
+            ) : (
+              ""
             )}
           </p>
           <p></p>

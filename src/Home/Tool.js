@@ -1,11 +1,21 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAdmin from "../Authentication/useAdmin";
+import auth from "../firebase.init";
 
 const Tool = ({ product }) => {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   const { name, price, description, availableQuantity, img, _id } = product;
   const navigate = useNavigate();
   const handlePurchase = () => {
-    navigate(`/purchase/${_id}`);
+    if (admin) {
+      toast.error("Admin Can't Purchase");
+    } else {
+      navigate(`/purchase/${_id}`);
+    }
   };
   return (
     // <div class="card lg:card-side bg-neutral-focus shadow-xl shadow-current">

@@ -10,7 +10,7 @@ const MyOrder = () => {
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrder?email=${user?.email}`, {
+    fetch(`https://sea-tech.herokuapp.commyOrder?email=${user?.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -33,6 +33,11 @@ const MyOrder = () => {
         {myOrder?.map((order, index) => (
           <MyOrderCard key={index} order={order}></MyOrderCard>
         ))}
+        {myOrder.length < 1 && (
+          <h1 className="text-2xl md:text-7xl font-serif text-center text-neutral-content pt-20">
+            <Wave text="Nothing In Order"></Wave>
+          </h1>
+        )}
       </div>
     </div>
   );

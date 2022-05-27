@@ -22,7 +22,7 @@ const BusinessSummery = () => {
       }}
     >
       <div className=" max-w-7xl container mx-auto">
-        <h1 className="text-2xl md:text-4xl font-serif text-center text-neutral-content pb-20">
+        <h1 className="text-2xl  md:text-5xl font-serif text-center text-neutral-content pb-20">
           <Wave text="MILLIONS BUSINESS TRUST US"></Wave>
         </h1>
         <div className=" overflow-hidden  py-10 min-h-[300px]  rounded-3xl    flex md:flex-row flex-col justify-around  ">

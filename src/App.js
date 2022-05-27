@@ -18,6 +18,7 @@ import Purchase from "./Home/Purchase";
 import Login from "./Login/Login";
 import SignUp from "./Login/SignUp";
 import NotFound from "./NotFound/NotFound";
+import Portfolio from "./Portfolio/Portfolio";
 import Review from "./Review/Review";
 import Footer from "./Shared/Footer";
 import Navbar from "./Shared/Navbar";
@@ -65,6 +66,7 @@ function App() {
           }
         ></Route>
         <Route path="/reviews" element={<Review></Review>}></Route>
+        <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>

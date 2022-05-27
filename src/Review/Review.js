@@ -2,16 +2,22 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Wave } from "react-animated-text";
 import HomeReview from "../Home/HomeReview";
+import Loading from "../Shared/Loading";
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const run = async () => {
       const { data } = await axios.get("https://sea-tech.herokuapp.com/review");
       setReviews(data);
+      setLoading(true);
     };
     run();
   }, []);
+  if (!loading) {
+    return <Loading></Loading>;
+  }
   console.log(reviews);
   return (
     <div className="py-20 px-10 min-h-screen container mx-auto max-w-7xl">

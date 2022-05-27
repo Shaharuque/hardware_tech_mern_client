@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyOrderCard = ({ order }) => {
+  const navigate = useNavigate();
   const {
     productName,
     orderAmount,
@@ -10,6 +12,12 @@ const MyOrderCard = ({ order }) => {
     address,
     phone,
   } = order;
+
+  const handlePay = () => {
+    const orderJson = JSON.stringify(order);
+    navigate(`/dashboard/payment/${orderJson}`);
+  };
+
   return (
     <div>
       <div class="card bg-neutral-focus mb-5 shadow-xl font-serif">
@@ -34,21 +42,38 @@ const MyOrderCard = ({ order }) => {
             <span className="text-primary">Address: </span>
             {address}
           </p>
-          <p>
-            <span className="text-primary">Transaction ID: </span>{" "}
-            {transactionId}
-          </p>
+          {transactionId && (
+            <p>
+              <span className="text-primary">Transaction ID: </span>{" "}
+              {transactionId}
+            </p>
+          )}
           <p>
             <span className="text-primary">Status: </span>
             {status !== "delivered" && (
-              <span className="btn btn-xs btn-warning">{status}</span>
+              <>
+                <span className="btn btn-xs btn-warning">{status}</span>
+              </>
             )}
+
             {status === "delivered" && (
               <span className="btn btn-xs btn-success">{status}</span>
             )}
           </p>
-          <p></p>
-          <p></p>
+          {!transactionId && (
+            <>
+              <button
+                onClick={handlePay}
+                className="btn btn-sm btn-success min-w-max mx-auto"
+              >
+                Pay
+              </button>
+
+              <button className="btn btn-sm btn-error min-w-max mx-auto">
+                Cancel
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

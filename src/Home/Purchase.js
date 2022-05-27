@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
+import useAdmin from "../Authentication/useAdmin";
 import auth from "../firebase.init";
 import Loading from "../Shared/Loading";
 import Payment from "./Payment";
@@ -9,6 +10,7 @@ import Payment from "./Payment";
 const Purchase = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   const params = useParams();
   const _id = params.id;
   console.log(_id);
@@ -64,10 +66,24 @@ const Purchase = () => {
       paymentAmount: orderAmount * price,
       address: event.target.address.value,
       phone: event.target.phone.value,
-      status: "pending",
+      status: "not payed",
     };
-    const orderJson = JSON.stringify(order);
-    navigate(`/dashboard/payment/${orderJson}`);
+    fetch("https://sea-tech.herokuapp.comorder", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(order),
+    });
+    {
+      !admin && navigate("/dashBoard/myOrder");
+    }
+    {
+      admin && navigate("/dashBoard/manageAllOrder");
+    }
+    // const orderJson = JSON.stringify(order);
+    // navigate(`/dashboard/payment/${orderJson}`);
   };
 
   return (
@@ -93,7 +109,7 @@ const Purchase = () => {
             </span>{" "}
             {description}
           </p>
-          <div class="card-actions w-full justify-around items-center">
+          <div class="card-actions w-full justify-around items-center mt-5">
             <p className="max-w-xs text-sm border p-1 text-center  rounded bg-secondary">
               <span className="font-serif">Minimum Order Quantity</span>:{" "}
               <span className="text-md text-accent-content font-bold">100</span>
@@ -101,7 +117,7 @@ const Purchase = () => {
             {/* <button class="btn btn-primary">Buy Now</button> */}
             {/* <!-- The button to open modal --> */}
             <label for="my-modal" class="btn dis modal-button bg-primary">
-              Buy Now
+              Place Order
             </label>
 
             {/* <!-- Put this part before </body> tag --> */}
@@ -171,7 +187,7 @@ const Purchase = () => {
                       disabled
                       id="submit"
                       type="submit"
-                      value="Pay"
+                      value="Order"
                       className="btn btn-bordered btn-secondary  max-w-xs"
                     />
                   )}
@@ -179,7 +195,7 @@ const Purchase = () => {
                     <input
                       id="submit"
                       type="submit"
-                      value="Pay"
+                      value="Order"
                       className="btn btn-bordered btn-secondary  max-w-xs"
                     />
                   )}
