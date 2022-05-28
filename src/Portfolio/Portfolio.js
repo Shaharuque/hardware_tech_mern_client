@@ -132,6 +132,14 @@ const Portfolio = () => {
             ></progress>
           </div>
           <div className="flex items-center">
+            <span className="w-32 pr-2 font-serif font-bold">ReactJS</span>
+            <progress
+              class="progress progress-primary"
+              value="75"
+              max="100"
+            ></progress>
+          </div>
+          <div className="flex items-center">
             <span className="w-32 pr-2 font-serif font-bold">TailWind</span>
             <progress
               class="progress progress-primary"
