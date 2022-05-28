@@ -8,6 +8,7 @@ import MyOrderCard from "./MyOrderCard";
 const MyOrder = () => {
   const [myOrder, setMyOrder] = useState([]);
   const [user] = useAuthState(auth);
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => {
     fetch(`https://sea-tech.herokuapp.com/myOrder?email=${user?.email}`, {
@@ -17,8 +18,14 @@ const MyOrder = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setMyOrder(data));
+      .then((data) => {
+        setMyOrder(data);
+        setFlag(false);
+      });
   }, []);
+  if (flag) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div

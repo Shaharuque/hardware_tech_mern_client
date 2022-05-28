@@ -5,8 +5,8 @@ const AllOrderCard = ({
   order,
   setBool,
   bool,
-  availableQuantity,
-  setAvailableQuantity,
+  // availableQuantity,
+  // setAvailableQuantity,
 }) => {
   const {
     productName,
@@ -17,7 +17,7 @@ const AllOrderCard = ({
     product_id,
     _id,
   } = order;
-  //   const [availableQuantity, setAvailableQuantity] = useState([]);
+  const [availableQuantity, setAvailableQuantity] = useState([]);
 
   useEffect(() => {
     fetch(`https://sea-tech.herokuapp.com/available?product_id=${product_id}`, {

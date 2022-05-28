@@ -2,19 +2,25 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Tool from "./Tool";
 import { Wave } from "react-animated-text";
+import Loading from "../Shared/Loading";
 
 const HomeTools = () => {
   const [products, setProducts] = useState([]);
+  const [flag, setFlag] = useState(true);
   useEffect(() => {
     const run = async () => {
       const { data } = await axios.get(
         "https://sea-tech.herokuapp.com/products"
       );
       setProducts(data);
+      setFlag(false);
     };
     run();
-    console.log(products);
+    // console.log(products);
   }, []);
+  if (flag) {
+    return <Loading></Loading>;
+  }
   return (
     <div
       id="products"
