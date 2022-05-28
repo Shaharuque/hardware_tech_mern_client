@@ -189,7 +189,7 @@ const Portfolio = () => {
           </div>
         </div>
       </div>
-      <div className="min-h-screen container max-w-7xl text-center pt-20">
+      <div className=" container max-w-7xl text-center pt-20">
         <h1 className="text-2xl md:text-5xl font-serif text-center text-neutral-content  ">
           <Wave text="Projects"></Wave>
         </h1>
@@ -199,7 +199,7 @@ const Portfolio = () => {
               <img src={travel} alt="Shoes" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title font-serif">Travel Baba</h2>
+              <h2 class="card-title font-serif text-primary">Travel Baba</h2>
               <div className="font-serif">
                 <h1>React</h1>
                 <h1>BootStrap</h1>
@@ -222,7 +222,7 @@ const Portfolio = () => {
               <img src={baby} alt="Shoes" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title font-serif">Baby Care</h2>
+              <h2 class="card-title font-serif text-primary">Baby Care</h2>
               <div className="font-serif">
                 <h1>React</h1>
                 <h1>BootStrap</h1>
@@ -245,7 +245,9 @@ const Portfolio = () => {
               <img src={center} alt="Shoes" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title font-serif">Jummon Community Center</h2>
+              <h2 class="card-title text-primary font-serif">
+                Jummon Community Center
+              </h2>
               <div className="font-serif">
                 <h1>HTML</h1>
                 <h1>CSS</h1>

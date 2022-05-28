@@ -6,17 +6,24 @@ const Footer = () => {
       <div className="footer container mx-auto justify-around ">
         <div className=" font-bold font-serif">
           <span class="footer-title text-xl ">Services</span>
-          <a class="link link-hover">Branding</a>
-          <a class="link link-hover">Design</a>
-          <a class="link link-hover">Marketing</a>
-          <a class="link link-hover">Advertisement</a>
+          <a class="link link-hover">Performance</a>
+          <a class="link link-hover">Speed</a>
+          <a class="link link-hover">Energy Save</a>
         </div>
         <div className=" font-bold font-serif">
           <span class="footer-title text-xl">Company</span>
-          <a class="link link-hover">About us</a>
-          <a class="link link-hover">Contact</a>
-          <a class="link link-hover">Jobs</a>
-          <a class="link link-hover">Press kit</a>
+          <a
+            class="link link-hover"
+            href="https://sea-tech-ccadc.web.app/portfolio"
+          >
+            About Me
+          </a>
+          <a
+            class="link link-hover"
+            href="https://sea-tech-ccadc.web.app/portfolio"
+          >
+            Contact
+          </a>
         </div>
         <div className=" font-bold font-serif">
           <span class="footer-title text-xl">Legal</span>
