@@ -9,7 +9,7 @@ const ManageProduct = () => {
   useEffect(() => {
     const run = async () => {
       const { data } = await axios.get(
-        "https://sea-tech.herokuapp.comadminProducts",
+        "https://sea-tech.herokuapp.com/adminProducts",
         {
           method: "GET",
           headers: {

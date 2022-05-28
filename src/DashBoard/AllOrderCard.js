@@ -20,7 +20,7 @@ const AllOrderCard = ({
   //   const [availableQuantity, setAvailableQuantity] = useState([]);
 
   useEffect(() => {
-    fetch(`https://sea-tech.herokuapp.comavailable?product_id=${product_id}`, {
+    fetch(`https://sea-tech.herokuapp.com/available?product_id=${product_id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -33,7 +33,7 @@ const AllOrderCard = ({
 
   const handleDeliver = () => {
     fetch(
-      `https://sea-tech.herokuapp.comupdate?product_id=${product_id}&&_id=${_id}&&orderAmount=${orderAmount}`,
+      `https://sea-tech.herokuapp.com/update?product_id=${product_id}&&_id=${_id}&&orderAmount=${orderAmount}`,
       {
         method: "PUT",
         headers: {

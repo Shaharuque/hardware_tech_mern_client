@@ -11,7 +11,7 @@ const MakeUpdate = () => {
   const [loading, setLoading] = useState(0);
 
   // const { data, isLoading, refetch } = useQuery("user", () =>
-  //   fetch("https://sea-tech.herokuapp.comallUser", {
+  //   fetch("https://sea-tech.herokuapp.com/allUser", {
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -26,7 +26,7 @@ const MakeUpdate = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://sea-tech.herokuapp.comallUser", {
+    fetch("https://sea-tech.herokuapp.com/allUser", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -40,7 +40,7 @@ const MakeUpdate = () => {
   }, [flag]);
 
   const makeAdmin = (email) => {
-    fetch(`https://sea-tech.herokuapp.comusers/admin/${email}`, {
+    fetch(`https://sea-tech.herokuapp.com/users/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -53,7 +53,7 @@ const MakeUpdate = () => {
       });
   };
   const deleteUser = (email) => {
-    fetch(`https://sea-tech.herokuapp.comusers/admin/${email}`, {
+    fetch(`https://sea-tech.herokuapp.com/users/admin/${email}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

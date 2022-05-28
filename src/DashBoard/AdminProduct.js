@@ -27,7 +27,7 @@ const AdminProduct = ({ product, bool, setBool }) => {
   const handleDelete = async () => {
     if (window.confirm("Are You Sure")) {
       const { data } = await axios.delete(
-        `https://sea-tech.herokuapp.comproduct?_id=${_id}`,
+        `https://sea-tech.herokuapp.com/product?_id=${_id}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,

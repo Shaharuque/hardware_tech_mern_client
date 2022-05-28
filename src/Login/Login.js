@@ -60,7 +60,6 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     await signInWithEmailAndPassword(data.email, data.password);
-    navigate(from, { replace: true });
   };
 
   return (

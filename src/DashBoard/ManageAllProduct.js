@@ -12,7 +12,7 @@ const ManageAllProduct = () => {
   const [availableQuantity, setAvailableQuantity] = useState([]);
 
   useEffect(() => {
-    fetch(`https://sea-tech.herokuapp.comallOrder`, {
+    fetch(`https://sea-tech.herokuapp.com/allOrder`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

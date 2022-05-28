@@ -68,7 +68,7 @@ const Purchase = () => {
       phone: event.target.phone.value,
       status: "not payed",
     };
-    fetch("https://sea-tech.herokuapp.comorder", {
+    fetch("https://sea-tech.herokuapp.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
