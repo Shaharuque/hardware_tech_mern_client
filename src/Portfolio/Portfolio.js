@@ -201,8 +201,8 @@ const Portfolio = () => {
         <h1 className="text-2xl md:text-5xl font-serif text-center text-neutral-content  ">
           <Wave text="Projects"></Wave>
         </h1>
-        <div className="grid lg:grid-cols-3 gap-4 p-20 md:grid-cols-2">
-          <div class="mx-auto card w-72 bg-neutral-focus shadow-xl">
+        <div className="grid lg:grid-cols-3 gap-4 py-20 px-5 md:grid-cols-2">
+          <div class="mx-auto card  bg-neutral-focus shadow-xl">
             <figure>
               <img src={travel} alt="Shoes" />
             </figure>
@@ -225,7 +225,7 @@ const Portfolio = () => {
               </div>
             </div>
           </div>
-          <div class="card mx-auto w-72 bg-neutral-focus shadow-xl">
+          <div class="card mx-auto bg-neutral-focus shadow-xl">
             <figure>
               <img src={baby} alt="Shoes" />
             </figure>
@@ -248,7 +248,7 @@ const Portfolio = () => {
               </div>
             </div>
           </div>
-          <div class="card mx-auto w-72 bg-neutral-focus shadow-xl">
+          <div class="card mx-auto  bg-neutral-focus shadow-xl">
             <figure>
               <img src={center} alt="Shoes" />
             </figure>
