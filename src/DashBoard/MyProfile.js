@@ -72,15 +72,15 @@ const MyProfile = () => {
         </div>
         <div className="py-10 font-serif font-extrabold">
           {data.role === "admin" && (
-            <h1 className="">{user.displayName} (Admin)</h1>
+            <h1 className="">{user?.displayName} (Admin)</h1>
           )}
           {data.role !== "admin" && (
-            <h1 className="">{user.displayName}(Regular User)</h1>
+            <h1 className="">{user?.displayName}(Regular User)</h1>
           )}
-          <p>Email : {data.email}</p>
-          {data?.education && <p>Education : {data.education}</p>}
-          {data?.address && <p>Address : {data.address}</p>}
-          {data?.phone && <p>Contact-No : {data.phone}</p>}
+          <p>Email : {data?.email}</p>
+          {data?.education && <p>Education : {data?.education}</p>}
+          {data?.address && <p>Address : {data?.address}</p>}
+          {data?.phone && <p>Contact-No : {data?.phone}</p>}
         </div>
         <label for="my-modal" class="btn modal-button bg-primary">
           Update Profile

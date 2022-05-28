@@ -26,18 +26,18 @@ const Login = () => {
       <p className="text-red-500">{error?.message || gError?.message}</p>
     );
   }
-  let from = location.state?.from?.pathname || "/";
-  if (token) {
-    navigate(from, { replace: true });
-  }
+  let from = location?.state?.from?.pathname || "/home";
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  if (loading) {
-    return <Loading></Loading>;
+
+  if (token) {
+    console.log(from);
+    navigate(from, { replace: true });
   }
 
   const resetPassword = async (data) => {
@@ -54,8 +54,13 @@ const Login = () => {
       toast.error("Please Enter Email");
     }
   };
-  const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
+  if (loading && !token) {
+    return <Loading></Loading>;
+  }
+
+  const onSubmit = async (data) => {
+    await signInWithEmailAndPassword(data.email, data.password);
+    navigate(from, { replace: true });
   };
 
   return (
