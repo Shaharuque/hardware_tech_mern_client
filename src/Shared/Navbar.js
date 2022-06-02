@@ -1,10 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import { signOut } from "firebase/auth";
 
 const Navbar = ({ setTheme, theme }) => {
+  const location = useLocation();
+
   const navigate = useNavigate();
   const logout = () => {
     signOut(auth);
@@ -75,25 +77,28 @@ const Navbar = ({ setTheme, theme }) => {
       </li>
     </>
   );
+
   return (
     <div className="navbar bg-base-100 container mx-auto max-w-screen-xl">
       <div className="navbar-start">
-        <label for="my-drawer-2" class=" drawer-button lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </label>
+        {location.pathname.includes("dashBoard") && (
+          <label for="my-drawer-2" class=" drawer-button lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
+        )}
 
         <a className="btn btn-ghost normal-case text-2xl font-bold font-serif">
           SEA Tech
