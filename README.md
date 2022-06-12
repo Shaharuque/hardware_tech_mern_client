@@ -23,3 +23,18 @@ pass(aaaaaa)
 * Admin Can manage Orders And Add Product or delete 
 * You Can Toggle Mode dark and Light 
 * For User Acces JWT Is used 
+
+
+## Technology
+* ReactJS
+* Tailwind
+* StripeJS
+* Firebase
+* ExpressJS
+* MongoDB
+* Heroku
+* react-firebase-hook
+* react-hook-form
+* 
+* Nodejs
+* 
